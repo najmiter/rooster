@@ -1,5 +1,15 @@
 use axum::extract::{Json, Path, Query};
-use axum::{Router, extract::ConnectInfo, response::Html, routing::get};
+use axum::http::{Request, StatusCode};
+use axum::response::IntoResponse;
+use axum::{
+    Router,
+    body::Body,
+    extract::ConnectInfo,
+    middleware::{self, Next},
+    response::Html,
+    response::Response,
+    routing::get,
+};
 use serde::Deserialize;
 use serde_json::{Value, json};
 use std::net::SocketAddr;
@@ -10,12 +20,48 @@ struct Pagination {
     page: Option<usize>,
     per_page: Option<usize>,
 }
+async fn auth(mut req: Request<Body>, next: Next) -> Result<Response, StatusCode> {
+    let url = req.uri_mut().path();
+    let username = url.split('/').last().unwrap_or("");
+
+    if username.is_empty() {
+        let body = Json(json!({ "error": "User not found" }));
+        let response = (StatusCode::NOT_FOUND, body);
+        return Ok(response.into_response());
+    }
+
+    if username == "najmiter" {
+        return Ok(next.run(req).await);
+    }
+
+    let body = Json(json!({ "error": "Unauthorized access" }));
+    let response = (StatusCode::UNAUTHORIZED, body);
+    return Ok(response.into_response());
+
+    // let auth_header = req
+    //     .headers()
+    //     .get(axum::http::header::AUTHORIZATION)
+    //     .and_then(|header| header.to_str().ok());
+
+    // match auth_header {
+    //     Some(auth_val) if auth_val.starts_with("Bearer ") => {
+    //         let token = auth_val.trim_start_matches("Bearer ");
+    //         if DUMMY_USERS.iter().any(|user| user.token == token) {
+    //             Ok(next.run(req).await)
+    //         } else {
+    //             Err(StatusCode::UNAUTHORIZED)
+    //         }
+    //     }
+    //     _ => Err(StatusCode::UNAUTHORIZED),
+    // }
+}
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    let app = Router::new()
-        .route("/", get(index))
-        .route("/users/:id", get(get_user_data));
+    let app = Router::new().route("/", get(index)).route(
+        "/users/:id",
+        get(get_user_data).route_layer(middleware::from_fn(auth)),
+    );
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     let listener = TcpListener::bind(addr).await?;
