@@ -18,7 +18,6 @@ async fn main() -> anyhow::Result<()> {
     Ok(())
 }
 
-// change return type to `Html<String>` to let browser know we are sending html
 async fn index(ConnectInfo(addr): ConnectInfo<SocketAddr>) -> Html<String> {
     let html = format!(
         "<!DOCTYPE html>
@@ -35,6 +34,5 @@ async fn index(ConnectInfo(addr): ConnectInfo<SocketAddr>) -> Html<String> {
         addr.ip()
     );
 
-    // create `Html` type like this
     Html(html)
 }
