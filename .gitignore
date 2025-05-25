@@ -1,1 +1,5 @@
 /target
+dist
+*.lock
+*.log
+.DS_Store
