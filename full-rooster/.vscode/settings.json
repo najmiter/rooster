@@ -1,0 +1,35 @@
+{
+  "rust-analyzer.rustfmt.overrideCommand": [
+    "leptosfmt",
+    "--stdin",
+    "--rustfmt"
+  ],
+  "editor.formatOnSave": true,
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "files.associations": {
+    "*.rs": "rust"
+  },
+  "emmet.includeLanguages": {
+    "rust": "html",
+    "*.rs": "html"
+  },
+  "tailwindCSS.includeLanguages": {
+    "rust": "html",
+    "*.rs": "html"
+  },
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "on",
+    "strings": true
+  },
+  "css.validate": false,
+  "rust-analyzer.procMacro.ignored": {
+    "leptos_macro": [
+      // optional:
+      // "component",
+      "server"
+    ]
+  }
+}
