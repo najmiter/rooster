@@ -1,3 +1,12 @@
+[profile.wasm-release]
+inherits = "release"
+opt-level = 'z'
+lto = true
+codegen-units = 1
+
+[package.metadata.leptos]
+lib-profile-release = "wasm-release"
+
 [package]
 name = "full-rooster"
 version = "0.1.0"
