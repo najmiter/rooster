@@ -71,14 +71,14 @@ pub fn Home() -> impl IntoView {
               }
             }
             id=move || id.to_string()
-            class="flex gap-2 justify-between items-center p-2 m-2 bg-gray-100 rounded-xl transition-colors hover:bg-gray-50"
+            class="flex gap-2 justify-between items-center p-2 rounded-xl transition-colors bg-stone-900 hover:bg-gray-950"
           >
             <h1 class="text-lg font-semibold">{move || title.get()}</h1>
             <div class=move || {
               if is_complete.get() {
-                "py-1 px-2 text-sm font-medium bg-red-100 rounded-full text-green-500"
+                "py-1 px-2 text-sm font-medium bg-green-100/20 rounded-full text-green-500 cursor-pointer"
               } else {
-                "py-1 px-2 text-sm font-medium bg-red-100 rounded-full text-red-500"
+                "py-1 px-2 text-sm font-medium bg-red-100/20 rounded-full text-red-500 cursor-pointer"
               }
             }>{move || if is_complete.get() { " (Completed)" } else { " (Pending)" }}</div>
           </div>

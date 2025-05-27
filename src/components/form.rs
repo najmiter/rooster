@@ -17,7 +17,7 @@ where
           set_title.set(String::new());
         }
       >
-        <div class="flex gap-2 justify-center items-center w-full">
+        <div class="flex flex-col gap-2 justify-center items-center w-full sm:flex-row">
           <input
             type="text"
             placeholder="Enter a todo title"
@@ -28,11 +28,11 @@ where
               set_title.set(val);
             }
             required
-            class="p-2 w-full max-w-xs rounded border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            class="p-2 w-full rounded border focus:ring-2 focus:outline-none border-secondary/70 bg-secondary focus:ring-primary"
           />
           <button
             type="submit"
-            class="py-2 px-4 text-white bg-blue-500 rounded hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            class="py-2 px-4 w-full text-white rounded focus:ring-2 focus:outline-none bg-secondary min-w-fit sm:w-fit hover:bg-secondary/70 focus:ring-secondary/60"
             aria-label="Add Todo"
             aria-describedby="add-todo-button"
           >
