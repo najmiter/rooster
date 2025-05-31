@@ -1,6 +1,7 @@
 use leptos::prelude::*;
 use leptos_meta::*;
 use leptos_router::{components::*, path};
+use pages::portfolio::Portfolio;
 
 mod components;
 mod pages;
@@ -22,6 +23,7 @@ pub fn App() -> impl IntoView {
       <Router>
         <Routes fallback=|| view! { NotFound }>
           <Route path=path!("/") view=Home />
+          <Route path=path!("/portfolio") view=Portfolio />
         </Routes>
       </Router>
     }
