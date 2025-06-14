@@ -12,10 +12,9 @@ pub fn Projects() -> impl IntoView {
 
     view! {
       <div class="mt-6 space-y-4">
-
         <section class="mb-16">
           <div class="mb-8 w-fit">
-            <h2 class="inline-block pb-1 text-2xl font-semibold">Work Experience</h2>
+            <h2 class="inline-block pb-1 text-2xl font-semibold">"Work Experience"</h2>
             <div aria-hidden class="animate-underline" />
           </div>
           <div class="flex flex-col gap-12">
@@ -26,13 +25,13 @@ pub fn Projects() -> impl IntoView {
                   <div>
                     <div class="relative">
                       <div class="flex flex-col mb-3 md:flex-row md:justify-between md:items-start">
-                        <h3 class="overflow-hidden relative text-xl font-semibold company-name">
+                        <h3 class="overflow-hidden relative text-xl font-semibold text-blue-600 company-name">
                           {job.company.clone()}
                         </h3>
                         <div class="text-gray-400">{job.period.clone()}</div>
                       </div>
                       <div class="mb-3 text-lg text-gray-300">
-                        {job.position.clone()} "•" {job.location.clone()}
+                        {job.position.clone()} " • " {job.location.clone()}
                       </div>
                       <div class="mt-4 space-y-6">
                         {job

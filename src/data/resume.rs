@@ -95,7 +95,7 @@ pub fn get_resume_data() -> ResumeData {
                 company: "Knoctal".to_string(),
                 position: "Full Stack Developer (Founder)".to_string(),
                 period: "Apr 2021 - Present".to_string(),
-                location: None,
+                location: Some("Hybrid".to_string()),
                 description: vec![
                     Project {
                         project_name: "Quvik".to_string(),
