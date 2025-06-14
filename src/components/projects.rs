@@ -1,5 +1,3 @@
-use core::hash;
-
 use leptos::prelude::*;
 
 use crate::components::animated_view::AnimatedView;
@@ -8,8 +6,6 @@ use crate::data::resume::get_resume_data;
 #[component]
 pub fn Projects() -> impl IntoView {
     let resume_data = get_resume_data();
-    let personal_info = resume_data.personal_info;
-    let professional_summary = resume_data.professional_summary;
     let work_experience = resume_data.work_experience;
     let skills = resume_data.skills;
     let education = resume_data.education;
