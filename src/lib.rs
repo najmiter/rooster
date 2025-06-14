@@ -4,9 +4,10 @@ use leptos_router::{components::*, path};
 use pages::portfolio::Portfolio;
 
 mod components;
+mod data;
 mod pages;
 
-use crate::pages::home::Home;
+use crate::pages::todo::Todo;
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -15,15 +16,15 @@ pub fn App() -> impl IntoView {
     view! {
       <Html attr:lang="en" attr:dir="ltr" attr:data-theme="dark" attr:class="dark" />
 
-      <Title text="Simple Todo App" />
+      <Title text="Portfolio" />
 
       <Meta charset="UTF-8" />
       <Meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
       <Router>
         <Routes fallback=|| view! { NotFound }>
-          <Route path=path!("/") view=Home />
-          <Route path=path!("/portfolio") view=Portfolio />
+          <Route path=path!("/") view=Portfolio />
+          <Route path=path!("/todo") view=Todo />
         </Routes>
       </Router>
     }

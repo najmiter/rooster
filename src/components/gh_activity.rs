@@ -24,7 +24,7 @@ struct GetGithubActivityResponse {
 }
 
 async fn fetch_gh_activity(year: i32) -> Option<GetGithubActivityResponse> {
-    Request::get(format!("http://najmiter.vercel.app/api/activity?year={}", year).as_str())
+    Request::get(format!("https://najmiter.vercel.app/api/activity?year={}", year).as_str())
         .send()
         .await
         .ok()?

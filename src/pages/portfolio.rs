@@ -1,4 +1,4 @@
-use crate::components::gh_activity::GhActivity;
+use crate::components::{gh_activity::GhActivity, projects::Projects};
 use leptos::prelude::*;
 use leptos_meta::*;
 
@@ -20,6 +20,11 @@ pub fn Portfolio() -> impl IntoView {
             <h1 class="text-xl font-semibold">"GitHub Activity"</h1>
 
             <GhActivity />
+          </section>
+          <section class="space-y-3">
+            <h1 class="text-xl font-semibold">"Work Experience"</h1>
+
+            <Projects />
           </section>
         </div>
       </div>
