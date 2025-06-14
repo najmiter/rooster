@@ -1,5 +1,7 @@
 # Simple Todo App (or is it 🤨)
 
+Just a remake of the Next.js portfolio
+
 ## Technologies Used
 
 - [Rust](https://www.rust-lang.org/) - The Man
