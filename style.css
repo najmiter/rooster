@@ -62,3 +62,36 @@
 html {
   @apply bg-background text-foreground selection:text-primary-foreground selection:bg-primary;
 }
+
+@layer utilities {
+  .scrollbar-hidden {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  .activity-box:hover::after {
+    visibility: visible;
+  }
+
+  .activity-box::after {
+    visibility: hidden;
+    content: attr(data-amount) ' contributions on ' attr(data-date);
+    z-index: 40;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    translate: -50% 0;
+    padding-block: 3px;
+    min-width: 195px;
+    font-size: 14px;
+    height: 26px;
+    color: #aaa;
+    text-align: center;
+    border-radius: var(--radius);
+    background-color: #353535;
+    pointer-events: none;
+  }
+}

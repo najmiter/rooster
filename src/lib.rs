@@ -13,7 +13,7 @@ pub fn App() -> impl IntoView {
     provide_meta_context();
 
     view! {
-      <Html attr:lang="en" attr:dir="ltr" attr:data-theme="dark" />
+      <Html attr:lang="en" attr:dir="ltr" attr:data-theme="dark" attr:class="dark" />
 
       <Title text="Simple Todo App" />
 
