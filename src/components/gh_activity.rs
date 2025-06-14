@@ -15,33 +15,29 @@ struct IGitHubActivity {
     contribution_days: Vec<ContributionDay>,
 }
 
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq, Default)]
 struct GetGithubActivityResponse {
     length: usize,
     data: Option<Vec<IGitHubActivity>>,
     error: Option<String>,
 }
 
-async fn fetch_gh_activity(year: RwSignal<i32>) -> Option<GetGithubActivityResponse> {
-    Request::get(
-        format!(
-            "http://najmiter.vercel.app/api/activity?year={}",
-            year.get()
-        )
-        .as_str(),
-    )
-    .send()
-    .await
-    .ok()?
-    .json::<GetGithubActivityResponse>()
-    .await
-    .ok()
+async fn fetch_gh_activity(year: i32) -> Option<GetGithubActivityResponse> {
+    Request::get(format!("http://najmiter.vercel.app/api/activity?year={}", year).as_str())
+        .send()
+        .await
+        .ok()?
+        .json::<GetGithubActivityResponse>()
+        .await
+        .ok()
 }
 
 #[component]
 pub fn GhActivity() -> impl IntoView {
-    let (year, set_year) = signal(RwSignal::new(2025)); // Renamed setYear to set_year for Rust conventions
-    let activity_data = LocalResource::new(move || fetch_gh_activity(year.get())); // Use year.get()
+    let (year, _set_year) = signal(2025);
+
+    // Note: pass year directly, not year.get()
+    let activity_data = LocalResource::new(move || fetch_gh_activity(year.get()));
 
     view! {
       <div>
@@ -51,32 +47,26 @@ pub fn GhActivity() -> impl IntoView {
           <div class="grid gap-4">
             {move || {
               activity_data
-                .read()
-                .clone()
-                .unwrap_or_default()
-                .map(|response| {
-                  response
-                    .to_owned()
-                    .data
-                    .unwrap_or_default()
-                    .iter()
-                    .map(|activity| {
+                .get()
+                .map(|data| {
+                  let res = data.unwrap_or_default().data.unwrap_or_default();
+                  res
+                    .into_iter()
+                    .map(|week| {
                       view! {
                         <div class="activity-year">
-                          <ul class="flex flex-col gap-2">
-                            {activity
-                              .contribution_days
-                              .iter()
-                              .map(|day| {
-                                view! {
-                                  <li class="flex gap-3 items-center">
-                                    <span class="date">{day.date.clone()}</span>
-                                    <span class="count">{day.contribution_count.to_string()}</span>
-                                  </li>
-                                }
-                              })
-                              .collect::<Vec<_>>()}
-                          </ul>
+                          {week
+                            .contribution_days
+                            .iter()
+                            .map(|day| {
+                              view! {
+                                <div class="activity-day">
+                                  <span class="date">{day.date.clone()}</span>
+                                  <span class="count">{day.contribution_count}</span>
+                                </div>
+                              }
+                            })
+                            .collect::<Vec<_>>()}
                         </div>
                       }
                     })

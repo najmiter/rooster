@@ -16,7 +16,7 @@ authors = ["Najam <realnajmiter@gmail.com>"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-leptos = { version = "0.8", features = ["csr"] }
+leptos = { version = "0.8", features = ["csr", "hydrate"] }
 leptos_meta = { version = "0.8" }
 leptos_router = { version = "0.8" }
 console_log = "1"
