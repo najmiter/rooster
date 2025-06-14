@@ -2,6 +2,7 @@ use crate::components::form::TodoForm;
 use leptos::prelude::*;
 use leptos::wasm_bindgen::JsCast;
 use leptos::*;
+use leptos_router::components::A;
 use web_sys::HtmlButtonElement;
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
@@ -26,7 +27,7 @@ pub fn Home() -> impl IntoView {
 
     view! {
       <div class="grid gap-2 p-4 mx-auto max-w-2xl">
-
+        <A href="/portfolio">"Portfolio"</A>
         <div class="sticky top-0 py-3 bg-background">
           <TodoForm on_submit={
             let set_counters = set_counters.clone();

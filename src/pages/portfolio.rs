@@ -1,14 +1,16 @@
 use crate::components::gh_activity::GhActivity;
 use leptos::prelude::*;
+use leptos_meta::*;
 
 #[component]
 pub fn Portfolio() -> impl IntoView {
     view! {
+      <Title text="Portfolio" />
       <div class="min-h-screen bg-[#111]">
         <div class="p-4 mx-auto space-y-10 max-w-screen-lg">
           <section>
-            <header>
-              <h1 class="mb-4 text-3xl font-bold">"Najam ul Hassan"</h1>
+            <header class="space-y-2">
+              <h1 class="text-3xl font-bold">"Najam ul Hassan"</h1>
               <p class="text-gray-400">
                 "This is my portfolio page. It showcases my GitHub activity and other projects."
               </p>
@@ -18,7 +20,6 @@ pub fn Portfolio() -> impl IntoView {
             <h1 class="text-xl font-semibold">"GitHub Activity"</h1>
 
             <GhActivity />
-
           </section>
         </div>
       </div>

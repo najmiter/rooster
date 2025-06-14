@@ -61,7 +61,7 @@ pub fn GhActivity() -> impl IntoView {
               .collect::<Vec<_>>()}
           </select>
 
-          <div class="grid overflow-auto gap-4 p-2 rounded-lg bg-[#181818]">
+          <div class="grid overflow-auto gap-4 p-2 rounded-lg contain-paint bg-[#181818]">
             {move || {
               activity_data
                 .get()
