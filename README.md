@@ -1,4 +1,4 @@
-# Simple Todo App
+# Simple Todo App (or is it 🤨)
 
 A straightforward Todo application built with Rust and Leptos, designed to help you manage your tasks efficiently.
 

@@ -7,7 +7,7 @@ pub struct ResumeData {
     pub education: Vec<Education>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct PersonalInfo {
     pub name: String,
     pub email: String,
